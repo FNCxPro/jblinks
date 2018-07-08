@@ -15,12 +15,12 @@
             <ons-list-header>Electra 11.3.1 Multipath</ons-list-header>
             <ons-list-item>Download signed Electra for your iPhone</ons-list-item>
             <ons-list-header>1.0.0</ons-list-header>
-            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.0" data-build="multipath" data-type="plist" onclick="downloadClick(this)">Download Plist</ons-list-item>
+            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.0" data-build="multipath" data-type="plist" onclick="downloadClick(this)">Download (on-device)</ons-list-item>
             <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.0" data-build="multipath" data-type="ipa" onclick="downloadClick(this)">Download IPA</ons-list-item>
             <ons-list-header>1.0.1</ons-list-header>
             <ons-list-item>Electra 11.3.1 v1.0.1 multipath was omitted due to a success regression</ons-list-item>
             <ons-list-header>1.0.2</ons-list-header>
-            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.2" data-build="multipath" data-type="plist" onclick="downloadClick(this)">Download Plist</ons-list-item>
+            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.2" data-build="multipath" data-type="plist" onclick="downloadClick(this)">Download (on-device)</ons-list-item>
             <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.2" data-build="multipath" data-type="ipa" onclick="downloadClick(this)">Download IPA</ons-list-item>
           </ons-list>
         </section>
@@ -67,7 +67,7 @@
         
         if (type === 'plist') {
           document.querySelector('#nav').pushPage('downloadStartedPlist')
-          window.location.href = `itms-services://?action=download&url=assets/plist/${jailbreak}-${version}-${build}.plist`
+          window.location.href = `itms-services://?action=download&url=https://FNCxPro.github.io/jblinks/assets/plist/${jailbreak}-${version}-${build}.plist`
         } else if (type === 'ipa') {
           document.querySelector('#nav').pushPage('downloadStartedIPA')
           window.location.href = `https://FNCxPro.github.io/jblinks/assets/ipa/${jailbreak}-${version}-${build}.ipa`
