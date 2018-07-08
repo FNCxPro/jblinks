@@ -18,13 +18,13 @@
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>fun.ignition.Electra1131MP</string>
+				<string>io.github.FNCxPro.multipath.electra1131</string>
 				<key>bundle-version</key>
-				<string>420.42.0</string>
+				<string>1.0.0</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>ElectraMP</string>
+				<string>ElectraMP 1.0.0</string>
 			</dict>
 		</dict>
 	</array>
