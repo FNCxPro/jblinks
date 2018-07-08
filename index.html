@@ -67,10 +67,10 @@
         
         if (type === 'plist') {
           document.querySelector('#nav').pushPage('downloadStartedPlist')
-          window.location = `itms-services://?action=download&url=assets/plist/${jailbreak}-${version}-${build}.plist`
+          window.location.href = `itms-services://?action=download&url=assets/plist/${jailbreak}-${version}-${build}.plist`
         } else if (type === 'ipa') {
           document.querySelector('#nav').pushPage('downloadStartedIPA')
-          window.location = `https://FNCxPro.github.io/jblinks/assets/ipa/${jailbreak}-${version}-${build}.ipa`
+          window.location.href = `https://FNCxPro.github.io/jblinks/assets/ipa/${jailbreak}-${version}-${build}.ipa`
         } else {
           ons.notification.alert('Invalid download type. Please submit an issue to the GitHub repo.')
         }      
