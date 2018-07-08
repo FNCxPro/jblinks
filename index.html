@@ -8,20 +8,55 @@
   <body>
     <ons-navigator swipeable id="nav" page="home"></ons-navigator>
     <template id="home">
-      <ons-page id="page1">
+      <ons-page id="home">
         <ons-toolbar><div class="center">Home</div></ons-toolbar>
-        <p>Download enterprise-signed Electra 11.3.1</p>
-        <ons-button data-jailbreak="electra-1131" data-version="1.0.2" data-build="multipath" data-type="plist" onclick="downloadClick(this)">Electra 11.3.1 multipath (v1.0.2)</ons-button>
-        <ons-button data-jailbreak="electra-1131" data-version="1.0.2" data-build="multipath" data-type="plist">Electra 11.3.1 multipath (v1.0.2) (ipa)</ons-button>
+        <section>
+          <ons-list>
+            <ons-list-header>Electra 11.3.1 Multipath</ons-list-header>
+            <ons-list-item>Download signed Electra for your iPhone</ons-list-item>
+            <ons-list-header>1.0.0</ons-list-header>
+            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.0" data-build="multipath" data-type="plist" onclick="downloadClick(this)">Download Plist</ons-list-item>
+            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.0" data-build="multipath" data-type="ipa" onclick="downloadClick(this)">Download IPA</ons-list-item>
+            <ons-list-header>1.0.1</ons-list-header>
+            <ons-list-item>Electra 11.3.1 v1.0.1 multipath was omitted due to a success regression</ons-list-item>
+            <ons-list-header>1.0.2</ons-list-header>
+            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.2" data-build="multipath" data-type="plist" onclick="downloadClick(this)">Download Plist</ons-list-item>
+            <ons-list-item tappable modifier="chevron" data-jailbreak="electra1131" data-version="1.0.2" data-build="multipath" data-type="ipa" onclick="downloadClick(this)">Download IPA</ons-list-item>
+          </ons-list>
+        </section>
       </ons-page>
     </template>
+
     <template id="downloadStartedPlist">
-      <ons-toolbar><div class="center">Download Started</div></ons-toolbar>
-      <p>Plist</p>
+      <ons-page id="downloadStartedPlist">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Home</ons-back-button></div>
+          <div class="center">Download Started</div>
+        </ons-toolbar>
+        <section style="padding: 8px;">
+          <p>The download should have started by now.</p>
+          <p>If an error shows when installing, try uninstalling all other Electra versions on your phone and try again.</p>
+          <a href="https://coolstar.org/electra/">Electra's website</a><br/>
+          <p>Credits: coolstar, Ian Beer, xerub, Siguza, pwn20wnd, theninjaprawn, stek29, PsychoTea, aesign</p>
+        </section>
+      </ons-page>
     </template>
+
     <template id="downloadStartedIPA">
-      <ons-toolbar><div class="center">Download Started</div></ons-toolbar>
-      <p>IPA</p>
+      <ons-page id="downloadStartedIPA">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Home</ons-back-button></div>
+          <div class="center">Download Started</div>
+        </ons-toolbar>
+        <section style="padding: 8px;">
+          <p>The download should have started by now.</p>
+          <p>You can sideload a pre-signed IPA by using old versions of iTunes (pre-12.7).</p>
+          <p>If you are running iTunes 12.7 and later, you will have to use something like iFunBox.</p>
+          <p>Alternatively, you can navigate to this website on your iPhone.</p>
+          <a href="https://coolstar.org/electra/">Electra's website</a><br/>
+          <p>Credits: coolstar, Ian Beer, xerub, Siguza, pwn20wnd, theninjaprawn, stek29, PsychoTea, aesign</p>
+        </section>
+      </ons-page>
     </template>
     <script>
       function downloadClick($this) {
@@ -29,7 +64,28 @@
         let version = $this.dataset.version
         let build = $this.dataset.build
         let type = $this.dataset.type
+        
+        if (type === 'plist') {
+          document.querySelector('#nav').pushPage('downloadStartedPlist')
+          window.location = `itms-services://?action=download&url=assets/plist/${jailbreak}-${version}-${build}.plist`
+        } else if (type === 'ipa') {
+          document.querySelector('#nav').pushPage('downloadStartedIPA')
+          window.location = `https://FNCxPro.github.io/jblinks/assets/ipa/${jailbreak}-${version}-${build}.ipa`
+        } else {
+          ons.notification.alert('Invalid download type. Please submit an issue to the GitHub repo.')
+        }      
       }
+      if (ons.platform.isIPhoneX()) { // Utility function
+        // Add empty attribute to the <html> element
+        document.documentElement.setAttribute('onsflag-iphonex-portrait', '')
+        document.documentElement.setAttribute('onsflag-iphonex-landscape', '')
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!ons.platform.isIOS())
+          document.querySelectorAll('[data-type="plist"]').forEach((el) => {
+            //el.style = 'display: none;'
+          })
+      })
     </script>
   </body>
 </html>
